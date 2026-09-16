@@ -1,4 +1,0 @@
-Target dependency graph (2 targets)
-Target 'AllExcludingTests' in project 'Aggregate'
-➜ Explicit dependency on target 'CodexUsage-product' in project 'CodexUsage'
-Target 'CodexUsage-product' in project 'CodexUsage' (no dependencies)
