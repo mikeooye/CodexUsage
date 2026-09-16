@@ -1,0 +1,674 @@
+[
+  {
+    "isFramework" : true,
+    "moduleName" : "Accessibility",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/Accessibility-2VQSQQKQUNSBW.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "AppKit",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/AppKit-1RIHOUPXDV9C2.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "ColorSync",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/ColorSync-1Y11CGH0VT89T.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Combine",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/Combine-24V1PTTNXKE6N.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "CoreAudio",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreAudio-2TZTGEZKJW070.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreData",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreData-NXPOTAYKZTPN.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "CoreFoundation",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreFoundation-24YVO3WQMDV9I.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreGraphics",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreGraphics-24PXHXHGF06E0.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "CoreImage",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreImage-1IBZOTAPB2Q9A.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreMedia",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreMedia-37HB89NUQM5P1.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreText",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreText-296EC26QOXZCJ.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreTransferable",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreTransferable-10ETFNGUA133F.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "CoreVideo",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreVideo-1PQ0Z2KUUCD2Y.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Darwin",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/Darwin-VJKCYIQY2EXC.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "DataDetection",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/DataDetection-1S8NJIDF1Q4JK.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "DeveloperToolsSupport",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/DeveloperToolsSupport-W1H9CJSNDAQK.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Dispatch",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/Dispatch-NPILTO3GJUAG.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Foundation",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/Foundation-L2CUTMNZNSSF.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "IOKit",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/IOKit-XP4C3IDU75NS.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "ImageIO",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/ImageIO-L3HZ75DM5YEV.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Metal",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/Metal-89SHLUG7A7PZ.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "OSLog",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/OSLog-2HQOVB60KNZSK.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "ObjectiveC",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/ObjectiveC-14YHSBGJWBY93.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Observation",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/Observation-T6AP7MMMJ9TN.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "QuartzCore",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/QuartzCore-2CWI9P5ZG8ZNT.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Spatial",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/Spatial-19HCO5CVSGOAR.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Swift",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/Swift-B47NJKVGLY48.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "SwiftUI",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/SwiftUI-FP1IRACTV09W.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "SwiftUICore",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/SwiftUICore-YA5YZOTT021B.swiftmodule"
+  },
+  {
+    "isFramework" : true,
+    "moduleName" : "Symbols",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/Symbols-33O8U5OOT5WQD.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "Synchronization",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/Synchronization-CRNL4LSGNJEH.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "System",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/System-1G7XBPS85RQ1E.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "UniformTypeIdentifiers",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/UniformTypeIdentifiers-2E1M9V8HS5IRW.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "XPC",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/XPC-27ZGKHT69M0KV.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_Builtin_float",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_float-3J3LKXQ689LQI.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_Concurrency",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_Concurrency-1O5LVW3OIGS2M.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation1",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_DarwinFoundation1-Z4C7CNXEUC0D.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation2",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_DarwinFoundation2-1T0JH1O2NTM7B.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation3",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_DarwinFoundation3-B0F2SL8QUDSI.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "_StringProcessing",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_StringProcessing-KX1CIJH6XXSJ.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "os",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/os-IXRGTUB2P9TG.swiftmodule"
+  },
+  {
+    "isFramework" : false,
+    "moduleName" : "simd",
+    "modulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/simd-OKVBFPQKGZHZ.swiftmodule"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/Accessibility.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/Accessibility-CU1I73JJD21390PH79QJ2IIYL.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Accessibility"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/AppKit.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/AppKit-8A9LMCD7JAC6NZT5RNU8ONIGD.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "AppKit"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/ApplicationServices.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/ApplicationServices-4ED5EC4X0FPGITEE7FMK0L57J.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ApplicationServices"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/CFNetwork.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CFNetwork-3M0QWLXL7X0DZBJHR8YJYLL6I.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CFNetwork"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/cups.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CUPS-DEHE5Q8JJ1JJPGYXMU6BH3LJY.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CUPS"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/ColorSync.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/ColorSync-BZFX8ZI279J3ASMQZSDQLGTCO.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ColorSync"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/CoreAudio.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreAudio-ELA77ESN7KNB941UTA7J2L9UU.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreAudio"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/CoreAudioTypes.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreAudioTypes-BLYPDDYWIJUOHXUYURUX7WHNP.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreAudioTypes"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/CoreData.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreData-28SXAJXGY7VIIJUBBJGGUY9BH.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreData"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/CoreFoundation.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreFoundation-1NJMWSDPW0CZRS1M4942LMUAC.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreFoundation"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/CoreGraphics.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreGraphics-DYJEU99F9GNANEATV2WQIGEMB.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreGraphics"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/CoreImage.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreImage-EM7AREWUBBL2OZ2XPIYFYPFE7.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreImage"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/CoreMedia.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreMedia-578W8BKX1U4JYEG1VVZ4QUKGY.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreMedia"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/CoreServices.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreServices-58C6MGC8YYB3ANOKMGCQ03P6S.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreServices"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/CoreText.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreText-TF1RCQGZCHIVM3CX22CNZI73.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreText"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/CoreTransferable.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreTransferable-CWK4RG4VIOWJC63UQ89FB1W5O.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreTransferable"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/CoreVideo.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/CoreVideo-293ONIBY7F6WLBBA29OU6E3QP.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "CoreVideo"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/Darwin.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/Darwin-5928YZ5LYZQAOJ8FO67Y0QN0I.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Darwin"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/DataDetection.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/DataDetection-1JG51JEYN7VENEN0G0IDOMPQX.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "DataDetection"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/DeveloperToolsSupport.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/DeveloperToolsSupport-AVZ3ZYVCQYFYXL43OHKJTHY2R.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "DeveloperToolsSupport"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/DiskArbitration.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/DiskArbitration-CH64TLM6WU5O4Z2P0SRADWCG.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "DiskArbitration"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/dispatch.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/Dispatch-5FWB9PQY8QZR1WPDAOG7UTZ0K.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Dispatch"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/Foundation.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/Foundation-CV9QV9DTSRHN4ZZH01ZIHW5P.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Foundation"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/IOKit.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/IOKit-4T88GWXO4RCVVR1Y7GADNYF55.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "IOKit"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/IOSurface.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/IOSurface-7T8XTAIOW8BWMDKA0FNTO152.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "IOSurface"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/ImageIO.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/ImageIO-6M4EESF9EOUW2MOP7CD9UEWZR.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ImageIO"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/DarwinBasic.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/MachO-8ZLUF9XSORVKT2UTPD96A2QOA.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "MachO"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/Metal.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/Metal-2MLCXC7ZOAMGTLZUV19BNY4U7.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Metal"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/OSLog.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/OSLog-294J11CYIXZ95NYMG25WD699I.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "OSLog"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/ObjectiveC.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/ObjectiveC-BN77LVJ2GY5KDFOSPQH20DUJZ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ObjectiveC"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/OpenGL.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/OpenGL-45QC4HLNGM03CCTAL3ZLPHJAT.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "OpenGL"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/QuartzCore.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/QuartzCore-6MOGTQPOLG6LH8S8IA3E0SNSN.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "QuartzCore"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/Security.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/Security-1QP7RAB5USK1TKBJT4U4LZBC6.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Security"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/Spatial\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/Spatial-52EXAN8K6PUR2IWPLZ03FTX36.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Spatial"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/lib\/swift\/shims\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/SwiftShims-14OJXAXTXUKS3U47X974OA7XB.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "SwiftShims"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/SwiftUI.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/SwiftUI-C10S5B058OXBEE5D4IFI7HTE5.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "SwiftUI"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/SwiftUICore.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/SwiftUICore-55KFWENZ0Z4AO5MF1V41LTRJV.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "SwiftUICore"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/Symbols.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/Symbols-BTGE2VM84HR0JX9ET2LSMOS6B.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "Symbols"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/System\/Library\/Frameworks\/UniformTypeIdentifiers.framework\/Modules\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/UniformTypeIdentifiers-9W5CRY1YWAL8PCRHABMSIMNR4.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "UniformTypeIdentifiers"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/xpc.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/XPC-1K24F34EQS9UZN7E7USMB39O9.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "XPC"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/DarwinFoundation1.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_AvailabilityInternal-A1ISP0TQTIJ5EH2K7JMV2E6FS.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_AvailabilityInternal"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_float-6H20PBA4TW8G4BHX4TB6US0S9.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_float"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_intrinsics-4LN4CMMZNG2Q32YFWUL6SNWT.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_intrinsics"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_inttypes-9MA0OP3C8NNBG0TBXEWP7OA9M.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_inttypes"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_limits-D1ASFEGOKJ7CLNUYHIKAE6NBX.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_limits"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_stdarg-7XT70NUJA9SX4KIFQGLA2QW4H.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdarg"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_stdatomic-B4BUKM8Z9WBUQWBNFCY3DIT5K.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdatomic"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_stdbool-B075G08UL0JR0WZJ6WII5UK8T.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdbool"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_stddef-440C5HOIBGCTLN9RYOT4U69T7.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stddef"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_stdint-230TBCRIU0AHR9FDMXWY3KNR7.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_stdint"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_Builtin_tgmath-E8T9P2CA7XZJ7WVJD01UTTIZY.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_Builtin_tgmath"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/DarwinFoundation1.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_DarwinFoundation1-BUACED1XXLPQ8JCINYDR4Y6PG.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation1"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/DarwinFoundation2.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_DarwinFoundation2-7E58BLLJMPH0TUMLB944UH94K.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation2"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/DarwinFoundation3.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_DarwinFoundation3-CLE2A8SJTZS502EI95HLCYAYM.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_DarwinFoundation3"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/lib\/swift\/shims\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/_SwiftConcurrencyShims-94QAT6JEE301Q1724GJWSV2NZ.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "_SwiftConcurrencyShims"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/launch.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/launch-82O86LR0P1V6WKYLQA9HCZKXX.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "launch"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/libDER\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/libDER-7Y608VW1XMWCXAQZB9TTE6DM.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "libDER"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/libkern.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/libkern-443P1VHTMJRTKMHRJ7S0R89J1.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "libkern"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/os.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/os-294NT8M88E3KIMU9XN51AXZ3P.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "os"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/os.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/os_object-1JSZ936140QZTOJHJOJ95E30X.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "os_object"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/os.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/os_workgroup-9MWJWVX02WPNMFH42YSTEH2TW.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "os_workgroup"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/ptrauth-CSQUPOO8LMUFEKP2BY8QJR9YN.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ptrauth"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/usr\/lib\/clang\/21\/include\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/ptrcheck-9R6TKWYCKRAPXYWISVMADYXLM.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "ptrcheck"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/simd\/module.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/simd-2X61FFF4V1EKA5PGZJ7GTCZBT.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "simd"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/c_standard_library.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/string_h-ETX0QHTZ3M6XY6DO18IM4I57W.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "string_h"
+  },
+  {
+    "clangModuleMapPath" : "\/Library\/Developer\/CommandLineTools\/SDKs\/MacOSX27.0.sdk\/usr\/include\/DarwinFoundation2.modulemap",
+    "clangModulePath" : "\/Volumes\/lexar_data\/Workspace\/CodexUsage\/.build\/out\/SDKExplicitPrecompiledModules\/sys_types-BIAMOS47H2ZQXXZETKHM3MV5.pcm",
+    "isBridgingHeaderDependency" : false,
+    "isFramework" : false,
+    "moduleName" : "sys_types"
+  }
+]
