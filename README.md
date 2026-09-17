@@ -1,6 +1,33 @@
-# Codex Usage
+<p align="center">
+  <img src="docs/icon-1024.png" width="140" alt="Codex Usage 图标">
+</p>
 
-极简 macOS 菜单栏 App：直接显示 Codex（ChatGPT Plus）5 小时 / 7 天额度的**剩余进度**与重置时间。
+<h1 align="center">Codex Usage</h1>
+
+<p align="center">极简 macOS 菜单栏 App：直接显示 Codex（ChatGPT Plus）5 小时 / 7 天额度的<strong>剩余进度</strong>与重置时间。</p>
+
+<p align="center">
+  <a href="https://github.com/mikeooye/CodexUsage/releases/latest"><img src="https://img.shields.io/github/v/release/mikeooye/CodexUsage?sort=semver&label=release" alt="最新版本"></a>
+  <img src="https://img.shields.io/badge/macOS-13%2B-black" alt="macOS 13+">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="许可证：MIT"></a>
+</p>
+
+## 下载安装
+
+到 [Releases](https://github.com/mikeooye/CodexUsage/releases/latest) 页面下载最新版本：
+
+| 文件 | 说明 |
+| --- | --- |
+| `CodexUsage-0.1.0.dmg` | 打开后把 **Codex Usage** 拖进「应用程序」（推荐：要用「登录时自动启动」就必须装在 `/Applications`） |
+| `CodexUsage-0.1.0-macos.zip` | 解压得到 `Codex Usage.app`，自行拖到 `/Applications` |
+
+发布包是 **universal 二进制**（Apple Silicon + Intel），只做了本地 ad-hoc 签名（项目没有 Apple 开发者证书）。首次打开可能被 Gatekeeper 拦下：在「系统设置 → 隐私与安全性」里点「仍要打开」，或直接去掉隔离属性：
+
+```bash
+xattr -dr com.apple.quarantine "/Applications/Codex Usage.app"
+```
+
+想自己编译，见下面的[从源码构建 .app](#从源码构建-app)。
 
 ## 要求
 
@@ -12,11 +39,13 @@
 
 直接用 Xcode 打开 `Package.swift`，选择 `CodexUsage` scheme 后 Run。
 
-## 生成 .app
+## 从源码构建 .app
 
 ```bash
 ./scripts/build-app.sh              # 只构建到 .build/Codex Usage.app
 ./scripts/build-app.sh --install    # 再安装（拷贝）到 /Applications
+./scripts/build-app.sh --universal  # Apple Silicon + Intel 通用二进制
+./scripts/package-release.sh        # 打发布包（dist/ 里的 .zip 与 .dmg）
 open '.build/Codex Usage.app'
 ```
 
@@ -80,16 +109,15 @@ App 不读取 `~/.codex/auth.json`。它启动本机 `codex app-server`，通过
 ▓▓▓▓▓▓▓░░░░░░░░░░░░░
 重置：9月20日 15:30
 ──────────────────────────────
-更新于 09:35
-
-刷新                              ⌘R
+刷新  09:35                       ⌘R
 登录时自动启动                      ✓
 ──────────────────────────────
 退出                              ⌘Q
 ```
 
 - 用量区块是菜单里的**自定义视图**，所以在原生菜单里也能保留进度条与重置时间；它是只读信息，不参与菜单高亮。
-- **展开菜单即刷新一次**，数据回来后菜单就地重绘，不用关掉再打开。
+- **最后更新时间挂在「刷新」那一行**（`刷新  09:35`）；该视图形状只在出错时才多出一行原因，正常状态下没有页脚。
+- **展开菜单即刷新一次**，数据回来后菜单就地重绘、这一行的时间也会跟着更新，不用关掉再打开。
 - 百分比文字用普通文字色（等级色尤其是绿色在浅色菜单上偏淡、不易看清）；**进度条本身**仍按剩余量变色（**绿 ≥50%**、**橙 ≥20%**、**红 <20%**）。
 - **登录时自动启动**是勾选项，用 macOS 13 的 `SMAppService` 注册登录项；每次展开菜单都会按系统里的真实状态回显（你在「系统设置 → 登录项」改过也同步）。它需要 App 位于 `/Applications`，详见上一节。
 
@@ -105,6 +133,7 @@ swift scripts/make-icon.swift preview jade 1024 /tmp/preview.png     # 导出某
 - 设计：圆角方形底（按 macOS Big Sur 网格：1024 画布里主体 824×824、圆角为边长的 22.37%）+ 两条胶囊进度条（上条 72%、下条 38%），与菜单栏图标同一套视觉语言。
 - 三种配色：`graphite`（石墨黑，当前使用）、`indigo`（靛蓝）、`jade`（翠绿）。换配色就是改命令里的变体名后重新生成。
 - ICNS 容器由脚本直接写出，不依赖 `iconutil`（后者在受限环境下会拒绝生成）。
+- 仓库里的 `docs/icon-1024.png` 就是本页顶部那张预览图，换配色后记得一起重新生成。
 
 > 菜单栏 App 没有 Dock 图标，这个图标主要出现在**通知横幅**、Finder 和「系统设置 → 通知」列表里。
 
@@ -114,3 +143,31 @@ swift scripts/make-icon.swift preview jade 1024 /tmp/preview.png     # 导出某
 - 菜单栏图标不是静态图片，而是用 AppKit 绘制成 `NSImage`（菜单栏里 SwiftUI 的 `ProgressView` 不生效），并按模板图交给系统着色。
 - 面板用 `NSMenu` + 一个 `NSMenuItem.view` 自定义视图实现，而不是 `NSPopover`（后者天生带箭头、样式固定，且对 accessory 应用点外部收起并不可靠）。
 - 图标与菜单只在数据变化、外观切换时重绘，不占用常驻 CPU。
+- 启动时持有一个 `NSActivityUserInitiatedAllowingIdleSystemSleep` 活动令牌禁止 **App Nap**：
+  菜单栏 App 没有窗口，闲置后会被系统节流，表现为「隔一阵点一次图标要卡一下菜单才弹出，
+  紧接着再点就很快」。该令牌只关掉节流，不阻止系统休眠。
+- 菜单展开路径上不允许有任何同步 XPC 或磁盘访问（登录项状态走缓存 + 后台刷新）。
+
+## 目录结构
+
+```
+Sources/CodexUsage/
+  CodexUsageMain.swift        入口：自己跑 NSApplication（纯 AppKit，无 SwiftUI）
+  AppDelegate.swift           状态栏图标、菜单组装、刷新循环
+  UsageStore.swift            用量状态 + 定时刷新 + 重置检测接线
+  CodexAppServerClient.swift  拉起 codex app-server，走 JSON-RPC 取数
+  Models.swift                用量窗口模型
+  ResetDetector.swift         重置判定（resetsAt 滚动 / 剩余量回升兜底）
+  ResetNotifier.swift         系统通知
+  StatusBarIcon.swift         菜单栏两条进度条（模板图）
+  UsageMenuView.swift         菜单里的用量自定义视图
+Resources/AppIcon.icns        应用图标（由脚本生成）
+scripts/build-app.sh          构建 .app（优先 SwiftPM，失败回退 swiftc）
+scripts/package-release.sh    打发布包：通用二进制 → dist/ 的 zip + dmg
+scripts/make-icon.swift       矢量绘制图标与配色预览
+```
+
+## 许可证
+
+[MIT](LICENSE)
+
