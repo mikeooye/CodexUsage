@@ -32,8 +32,29 @@ xattr -dr com.apple.quarantine "/Applications/Codex Usage.app"
 ## 要求
 
 - macOS 13+
-- Xcode / Command Line Tools
-- 已安装并登录 Codex（ChatGPT.app 自带，或独立安装的 Codex CLI），终端执行 `codex --version` 可用
+- 已安装并登录 Codex —— **装了 ChatGPT.app 就够了**（它自带 `codex`），也可以换成独立安装的 Codex CLI
+- 只有自己编译才需要 Xcode / Command Line Tools
+
+## 兼容性
+
+当前验证通过的组合：
+
+| 组件 | 版本 |
+| --- | --- |
+| **ChatGPT.app** | **`26.911.61220`**（Build 9647） |
+| 它内置的 codex | `codex-cli 0.155.0-alpha.2.6` |
+| macOS | 13 及以上 |
+
+- 取数走 ChatGPT.app 内置的 `codex app-server`，调用 JSON-RPC 的 `account/read` 与 `account/rateLimits/read`。
+  这两个是 Codex 的内部方法、不是稳定的公开 API：上游若改了方法名或字段，表现是取数失败（菜单里会写明原因），不会崩。
+- **不需要把 `codex` 装进 PATH**：按下面的顺序找可执行文件，任何一条命中即可。
+
+  1. `/Applications/ChatGPT.app/Contents/Resources/codex`，以及 `~/Applications/ChatGPT.app/...` 下的同一路径
+  2. `/opt/homebrew/bin/codex`、`/usr/local/bin/codex`
+  3. `~/.local/bin/codex`、`~/.npm-global/bin/codex`
+  4. 最后用 `zsh -lc 'command -v codex'` 在用户 PATH 里找
+
+  一条都没找到时，菜单栏图标显示警告三角，悬停提示「找不到 codex CLI」。
 
 ## Xcode 打开
 
