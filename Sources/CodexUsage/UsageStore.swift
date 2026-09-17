@@ -2,17 +2,30 @@ import Foundation
 
 @MainActor
 final class UsageStore: ObservableObject {
+    /// 自动刷新间隔。
+    static let refreshInterval: Duration = .seconds(60)
+
     @Published var windows: [UsageWindow] = []
     @Published var isLoading = false
     @Published var error: String?
     @Published var lastUpdated: Date?
 
+    /// 检测到额度重置时回调（由 App 层转成系统通知）。
+    var onReset: (@MainActor ([UsageWindow]) -> Void)?
+
     private let client = CodexAppServerClient()
     private var loop: Task<Void, Never>?
+    private var resetDetector = ResetDetector()
 
-    var menuTitle: String {
-        guard !windows.isEmpty else { return "Codex" }
-        return windows.map { "\($0.title) \(Int($0.remainingPercent.rounded()))%" }.joined(separator: " · ")
+    /// 状态栏悬停提示。
+    var toolTip: String {
+        guard !windows.isEmpty else { return error ?? "Codex 用量" }
+        var lines = windows.map { "\($0.title)剩余 \($0.remainingText)" }
+        if let lastUpdated {
+            lines.append("更新于 \(lastUpdated.formatted(date: .omitted, time: .shortened))")
+        }
+        if let error { lines.append(error) }
+        return lines.joined(separator: "\n")
     }
 
     func start() async {
@@ -20,7 +33,7 @@ final class UsageStore: ObservableObject {
         await refresh()
         loop = Task { [weak self] in
             while !Task.isCancelled {
-                try? await Task.sleep(for: .seconds(120))
+                try? await Task.sleep(for: UsageStore.refreshInterval)
                 await self?.refresh()
             }
         }
@@ -30,8 +43,11 @@ final class UsageStore: ObservableObject {
         guard !isLoading else { return }
         isLoading = true; defer { isLoading = false }
         do {
-            windows = try await client.rateLimits()
+            let latest = try await client.rateLimits()
+            windows = latest
             lastUpdated = Date(); error = nil
+            let resets = resetDetector.note(latest)
+            if !resets.isEmpty { onReset?(resets) }
         } catch {
             self.error = error.localizedDescription
         }
