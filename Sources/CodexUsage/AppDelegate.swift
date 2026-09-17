@@ -8,9 +8,25 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private let usageView = UsageMenuView()
     private var statusItem: NSStatusItem!
     private var launchAtLoginItem: NSMenuItem?
+    /// 「刷新」那一项 —— 标题里会带上最后更新时间。
+    private var refreshItem: NSMenuItem?
+    /// 登录项状态的缓存。`SMAppService.status` 是同步 XPC：平时 2ms，但系统服务偶尔
+    /// 变慢时会变成几百毫秒。它绝不能出现在菜单展开路径上，否则菜单会卡住才弹出。
+    private var launchAtLoginEnabled = false
+    /// 禁止 App Nap 的活动令牌（见 applicationDidFinishLaunching 里的说明）。
+    private var activityToken: NSObjectProtocol?
     private var cancellables: Set<AnyCancellable> = []
 
     func applicationDidFinishLaunching(_ notification: Notification) {
+        // 菜单栏 App 没有窗口，闲置一会儿就会被系统判为「无事可做」而进入 App Nap：
+        // 表现为「隔一阵点一次图标要卡一下菜单才弹出，紧接着再点就很快」。
+        // 持有一个 user-initiated 活动令牌即可关掉这个节流；它不阻止系统休眠，
+        // 只是让本进程保持正常优先级。
+        activityToken = ProcessInfo.processInfo.beginActivity(
+            options: .userInitiatedAllowingIdleSystemSleep,
+            reason: "菜单栏图标需要随时响应点击"
+        )
+
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
         statusItem.button?.imagePosition = .imageOnly
         statusItem.button?.imageScaling = .scaleNone
@@ -20,6 +36,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         observeStore()
         observeAppearance()
         observeWake()
+
+        // 启动时就把登录项状态读进缓存，这样第一次展开菜单也不用同步等 XPC。
+        refreshLaunchAtLoginCache()
 
         ResetNotifier.shared.prepare()
         store.onReset = { windows in
@@ -45,12 +64,13 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         let refreshItem = NSMenuItem(title: "刷新", action: #selector(refreshNow), keyEquivalent: "r")
         refreshItem.target = self
         menu.addItem(refreshItem)
+        self.refreshItem = refreshItem
 
         let loginItem = NSMenuItem(title: "登录时自动启动",
                                    action: #selector(toggleLaunchAtLogin),
                                    keyEquivalent: "")
         loginItem.target = self
-        loginItem.state = LaunchAtLogin.isEnabled ? .on : .off
+        loginItem.state = launchAtLoginEnabled ? .on : .off
         menu.addItem(loginItem)
         launchAtLoginItem = loginItem
 
@@ -65,10 +85,30 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
     /// 菜单展开就算一次「点击状态栏」：先刷新一次，
     /// 新数据回来后 renderIcon() 会让这块自定义视图重绘，菜单保持展开。
+    ///
+    /// 这里只做内存操作 + 起异步任务，任何同步 XPC／磁盘访问都不许有 —— 否则
+    /// 菜单会先卡住再弹出。
     func menuWillOpen(_ menu: NSMenu) {
         Task { await store.refresh() }
-        // 用户可能在「系统设置 → 登录项」里改过，每次展开都按真实状态回显。
-        launchAtLoginItem?.state = LaunchAtLogin.isEnabled ? .on : .off
+        // 用户可能在「系统设置 → 登录项」里改过，按缓存的真实状态回显，
+        // 同时丢一个后台任务去更新缓存（供下一次展开使用）。
+        launchAtLoginItem?.state = launchAtLoginEnabled ? .on : .off
+        refreshLaunchAtLoginCache()
+    }
+
+    /// 在后台线程读登录项状态，再回主线程更新缓存与勾选态。
+    private func refreshLaunchAtLoginCache() {
+        Task.detached(priority: .utility) { [weak self] in
+            let enabled = LaunchAtLogin.isEnabled
+            // 先把 weak 解包成本地常量，避免在内层并发闭包里引用被捕获的 var。
+            guard let self else { return }
+            await MainActor.run { self.applyLaunchAtLogin(enabled) }
+        }
+    }
+
+    private func applyLaunchAtLogin(_ enabled: Bool) {
+        launchAtLoginEnabled = enabled
+        launchAtLoginItem?.state = enabled ? .on : .off
     }
 
     @objc private func refreshNow() {
@@ -82,7 +122,8 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
             return
         }
 
-        let enabling = !LaunchAtLogin.isEnabled
+        // 这里已经是菜单关闭之后，同步读写 XPC 不影响菜单弹出速度。
+        let enabling = !launchAtLoginEnabled
         do {
             try LaunchAtLogin.setEnabled(enabling)
         } catch {
@@ -95,11 +136,11 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
                 或签名不被系统接受。建议先安装到 /Applications 再开启。
                 """
             )
-            launchAtLoginItem?.state = LaunchAtLogin.isEnabled ? .on : .off
+            refreshLaunchAtLoginCache()
             return
         }
 
-        launchAtLoginItem?.state = LaunchAtLogin.isEnabled ? .on : .off
+        applyLaunchAtLogin(LaunchAtLogin.isEnabled)
         if enabling, LaunchAtLogin.requiresApproval {
             presentAlert(
                 title: "还需要你批准一次",
@@ -171,6 +212,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         let hasError = store.error != nil
         statusItem.button?.image = StatusBarIcon.image(windows: store.windows, hasError: hasError)
         statusItem.button?.toolTip = store.toolTip
-        usageView.update(windows: store.windows, error: store.error, lastUpdated: store.lastUpdated)
+        usageView.update(windows: store.windows, error: store.error)
+        // 最后更新时间挂在「刷新」那一行：刷新  09:35        ⌘R
+        refreshItem?.title = store.lastUpdated
+            .map { "刷新  " + $0.formatted(date: .omitted, time: .shortened) } ?? "刷新"
     }
 }

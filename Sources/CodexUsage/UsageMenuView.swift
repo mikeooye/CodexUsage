@@ -2,8 +2,8 @@ import AppKit
 
 /// 菜单里用量区块的自定义视图：每个周期一行「标题 + 剩余百分比 + 进度条 + 重置时间」。
 ///
-/// 用自定义视图是为了在原生菜单（磨砂背景、无箭头）里保留进度条。
-/// 代价是这一项不参与菜单高亮 —— 它本来就是只读信息，这样反而更像原生的信息区。
+/// 只负责用量本身：最后更新时间放在「刷新」那一行的标题里，出错原因才在这里补一行。
+/// 因此正常状态下这个视图不含页脚，高度会比出错时矮一行。
 final class UsageMenuView: NSView {
     enum Metrics {
         static let width: CGFloat = 300
@@ -12,15 +12,17 @@ final class UsageMenuView: NSView {
         static let rowHeight: CGFloat = 46
         static let barHeight: CGFloat = 7
         static let dividerGap: CGFloat = 8
-        static let footerHeight: CGFloat = 16
+        static let errorHeight: CGFloat = 16
         static let bottomPadding: CGFloat = 8
 
         static var contentWidth: CGFloat { width - horizontalPadding * 2 }
-        /// 高度固定：菜单展开期间数据刷新时不会引起尺寸跳动。
-        static var height: CGFloat {
-            topPadding + rowHeight * 2 + dividerGap + footerHeight + bottomPadding
-        }
         static var maxRows: Int { 2 }
+
+        /// 只有出错时才多出「分隔线 + 一行原因」的高度，正常状态不留空白。
+        static func height(hasError: Bool) -> CGFloat {
+            topPadding + rowHeight * CGFloat(maxRows) + bottomPadding
+                + (hasError ? dividerGap + errorHeight : 0)
+        }
     }
 
     private static let titleFont = NSFont.systemFont(ofSize: 13, weight: .medium)
@@ -28,55 +30,64 @@ final class UsageMenuView: NSView {
     private static let captionFont = NSFont.systemFont(ofSize: 11)
 
     private var windows: [UsageWindow] = []
-    private var error: String?
-    private var lastUpdated: Date?
+    private var errorText: String?
 
     /// 视图内自上而下排布，用翻转坐标系省掉一堆高度换算。
     override var isFlipped: Bool { true }
 
     init() {
-        super.init(frame: NSRect(x: 0, y: 0, width: Metrics.width, height: Metrics.height))
+        super.init(frame: NSRect(x: 0, y: 0, width: Metrics.width, height: Metrics.height(hasError: false)))
     }
 
     @available(*, unavailable)
     required init?(coder: NSCoder) { fatalError("init(coder:) 未使用") }
 
-    func update(windows: [UsageWindow], error: String?, lastUpdated: Date?) {
+    func update(windows: [UsageWindow], error: String?) {
         self.windows = windows
-        self.error = error
-        self.lastUpdated = lastUpdated
+        self.errorText = error
+        // 高度随「是否有错误」变化；只有真的变了才动 frame，
+        // 否则每次 60 秒刷新都会白白让 AppKit 重排一次、可能让正开着的菜单抖一下。
+        let target = NSSize(width: Metrics.width, height: Metrics.height(hasError: error != nil))
+        if frame.size != target { setFrameSize(target) }
         needsDisplay = true
     }
 
     override func draw(_ dirtyRect: NSRect) {
-        let pad = Metrics.horizontalPadding
-        var y = Metrics.topPadding
         let shown = Array(windows.prefix(Metrics.maxRows))
+        var y = Metrics.topPadding
 
         if shown.isEmpty {
-            draw(error ?? "正在获取用量…",
-                 in: NSRect(x: pad, y: y + 10, width: Metrics.contentWidth, height: 18),
-                 font: Self.titleFont, color: .secondaryLabelColor)
+            // 还没拿到数据：两条淡色空槽占位，避免被误读成「满额」。
+            for _ in 0..<Metrics.maxRows {
+                drawPlaceholderRow(y: y)
+                y += Metrics.rowHeight
+            }
         } else {
             for window in shown {
                 drawRow(window, y: y)
                 y += Metrics.rowHeight
             }
         }
-        // 没有数据时也占住同样的高度，避免菜单尺寸变化。
-        y = Metrics.topPadding + Metrics.rowHeight * CGFloat(Metrics.maxRows)
 
+        guard let errorText else { return }
+        let pad = Metrics.horizontalPadding
+        y = Metrics.topPadding + Metrics.rowHeight * CGFloat(Metrics.maxRows)
         y += Metrics.dividerGap / 2
         NSColor.separatorColor.setFill()
         NSRect(x: pad, y: y, width: Metrics.contentWidth, height: 1).fill()
         y += Metrics.dividerGap / 2
+        draw(errorText,
+             in: NSRect(x: pad, y: y, width: Metrics.contentWidth, height: Metrics.errorHeight),
+             font: Self.captionFont, color: .secondaryLabelColor)
+    }
 
-        let footer = error
-            ?? lastUpdated.map { "更新于 \($0.formatted(date: .omitted, time: .shortened))" }
-            ?? "正在获取用量…"
-        draw(footer,
-             in: NSRect(x: pad, y: y, width: Metrics.contentWidth, height: Metrics.footerHeight),
-             font: Self.captionFont, color: .tertiaryLabelColor)
+    private func drawPlaceholderRow(y: CGFloat) {
+        let pad = Metrics.horizontalPadding
+        let barY = y + 20
+        NSColor.quaternaryLabelColor.withAlphaComponent(0.5).setFill()
+        NSBezierPath(roundedRect: NSRect(x: pad, y: barY, width: Metrics.contentWidth, height: Metrics.barHeight),
+                     xRadius: Metrics.barHeight / 2,
+                     yRadius: Metrics.barHeight / 2).fill()
     }
 
     private func drawRow(_ window: UsageWindow, y: CGFloat) {
