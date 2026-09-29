@@ -1,3 +1,4 @@
+import AppKit
 import Foundation
 
 actor CodexAppServerClient {
@@ -153,46 +154,104 @@ actor CodexAppServerClient {
     private func findCodex() -> String? {
         let fm = FileManager.default
 
-        // 新版 Codex 已集成进 ChatGPT.app，优先复用 ChatGPT 自带的 codex。
+        // 新版 Codex 已集成进 ChatGPT.app，优先复用 ChatGPT 自带的 codex，
         // 这样用户无需额外安装 Codex CLI。
-        let candidates = [
-            "/Applications/ChatGPT.app/Contents/Resources/codex",
-            NSHomeDirectory() + "/Applications/ChatGPT.app/Contents/Resources/codex",
+        var candidates = chatGPTAppBundles().flatMap { codexPaths(insideApp: $0) }
 
-            // 兼容独立安装的 Codex CLI。
+        // 兼容独立安装的 Codex CLI。
+        candidates += [
             "/opt/homebrew/bin/codex",
             "/usr/local/bin/codex",
             NSHomeDirectory() + "/.local/bin/codex",
             NSHomeDirectory() + "/.npm-global/bin/codex"
         ]
+        // nvm 之类的全局安装会按 node 版本分目录。
+        candidates += nvmCodexCandidates()
 
         if let hit = candidates.first(where: { fm.isExecutableFile(atPath: $0) }) {
             return hit
         }
 
         // 最后再尝试用户 PATH 中的 codex。
-        let shell = Process()
+        for shell in ["/bin/zsh", "/bin/bash"] {
+            if let hit = codexFromLoginShell(shell) { return hit }
+        }
+
+        return nil
+    }
+
+    /// 一个 app 包内部 codex 可执行文件的候选位置。
+    /// 0.156 起 ChatGPT.app 把可执行文件挪进了 `Contents/Resources/codex-cli/`，
+    /// 旧布局（`Contents/Resources/codex`）保留在最后兜底。
+    private func codexPaths(insideApp app: String) -> [String] {
+        [
+            app + "/Contents/Resources/codex-cli/bin/codex",
+            app + "/Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex",
+            app + "/Contents/Resources/codex"
+        ]
+    }
+
+    /// 找出本机所有可能自带 codex 的 app 包路径（ChatGPT.app / ChatGPT Classic.app 等）。
+    private func chatGPTAppBundles() -> [String] {
+        let fm = FileManager.default
+        var apps: [String] = []
+
+        // 先用 bundle id 定位：App 改名或被装到别处（如 ~/Applications）也能命中。
+        for id in ["com.openai.chat", "com.openai.codex", "com.openai.codex.cli"] {
+            if let url = NSWorkspace.shared.urlForApplication(withBundleIdentifier: id) {
+                apps.append(url.path)
+            }
+        }
+
+        let searchDirs = ["/Applications", NSHomeDirectory() + "/Applications"]
+        for name in ["ChatGPT.app", "ChatGPT Classic.app"] {
+            for dir in searchDirs { apps.append(dir + "/" + name) }
+        }
+
+        // 兜底：扫一遍常见安装目录，兼容被改名成别的（例如带版本号的副本）。
+        for dir in searchDirs {
+            guard let entries = try? fm.contentsOfDirectory(atPath: dir) else { continue }
+            for entry in entries where entry.hasSuffix(".app") {
+                let lower = entry.lowercased()
+                guard lower.contains("chatgpt") || lower.contains("codex") else { continue }
+                apps.append(dir + "/" + entry)
+            }
+        }
+
+        var seen = Set<String>()
+        return apps.filter { seen.insert($0).inserted }
+    }
+
+    private func nvmCodexCandidates() -> [String] {
+        let root = NSHomeDirectory() + "/.nvm/versions/node"
+        guard let versions = try? FileManager.default.contentsOfDirectory(atPath: root) else { return [] }
+        // 新版本优先，命中率更高。
+        return versions.sorted(by: >).map { root + "/" + $0 + "/bin/codex" }
+    }
+
+    /// 在登录 shell 里跑 `command -v codex`，取最后一行真实可执行的结果。
+    private func codexFromLoginShell(_ shell: String) -> String? {
+        let process = Process()
         let pipe = Pipe()
-        shell.executableURL = URL(fileURLWithPath: "/bin/zsh")
-        shell.arguments = ["-lc", "command -v codex"]
-        shell.standardOutput = pipe
-        shell.standardError = FileHandle.nullDevice
+        process.executableURL = URL(fileURLWithPath: shell)
+        process.arguments = ["-lc", "command -v codex"]
+        process.standardOutput = pipe
+        process.standardError = FileHandle.nullDevice
 
         do {
-            try shell.run()
-            shell.waitUntilExit()
+            try process.run()
+            process.waitUntilExit()
         } catch {
             return nil
         }
 
         let data = pipe.fileHandleForReading.readDataToEndOfFile()
-        let path = String(data: data, encoding: .utf8)?
-            .trimmingCharacters(in: .whitespacesAndNewlines)
-
-        guard let path, !path.isEmpty, fm.isExecutableFile(atPath: path) else {
-            return nil
-        }
-
-        return path
+        guard let raw = String(data: data, encoding: .utf8) else { return nil }
+        let fm = FileManager.default
+        // 登录脚本（rvm/nvm 等）可能往 stdout 里塞别的东西，只认真正可执行的那一行。
+        return raw
+            .split(separator: "\n")
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .last { !$0.isEmpty && fm.isExecutableFile(atPath: $0) }
     }
 }

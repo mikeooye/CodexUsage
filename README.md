@@ -18,8 +18,8 @@
 
 | 文件 | 说明 |
 | --- | --- |
-| `CodexUsage-0.1.0.dmg` | 打开后把 **Codex Usage** 拖进「应用程序」（推荐：要用「登录时自动启动」就必须装在 `/Applications`） |
-| `CodexUsage-0.1.0-macos.zip` | 解压得到 `Codex Usage.app`，自行拖到 `/Applications` |
+| `CodexUsage-0.1.1.dmg` | 打开后把 **Codex Usage** 拖进「应用程序」（推荐：要用「登录时自动启动」就必须装在 `/Applications`） |
+| `CodexUsage-0.1.1-macos.zip` | 解压得到 `Codex Usage.app`，自行拖到 `/Applications` |
 
 发布包是 **universal 二进制**（Apple Silicon + Intel），只做了本地 ad-hoc 签名（项目没有 Apple 开发者证书）。首次打开可能被 Gatekeeper 拦下：在「系统设置 → 隐私与安全性」里点「仍要打开」，或直接去掉隔离属性：
 
@@ -35,24 +35,32 @@ xattr -dr com.apple.quarantine "/Applications/Codex Usage.app"
 - 已安装并登录 Codex —— **装了 ChatGPT.app 就够了**（它自带 `codex`），也可以换成独立安装的 Codex CLI
 - 只有自己编译才需要 Xcode / Command Line Tools
 
+> **当前适配的 Codex 版本：`codex-cli 0.158.0-alpha.2.1`**（随 ChatGPT.app `26.924.22138` 分发，入口
+> `/Applications/ChatGPT.app/Contents/Resources/codex-cli/bin/codex`）。这个版本把可执行文件从
+> `Contents/Resources/codex` 挪进了 `codex-cli/` 子目录 —— **0.1.1 起 App 会按 bundle id 重新定位 ChatGPT.app，
+> 新旧两种布局都认**，所以以后 ChatGPT.app 再更新目录结构也不会轻易「找不到 codex CLI」。
+
 ## 兼容性
 
 当前验证通过的组合：
 
 | 组件 | 版本 |
 | --- | --- |
-| **ChatGPT.app** | **`26.911.61220`**（Build 9647） |
-| 它内置的 codex | `codex-cli 0.155.0-alpha.2.6` |
+| **ChatGPT.app** | **`26.924.22138`** |
+| 它内置的 codex | `codex-cli 0.158.0-alpha.2.1` |
 | macOS | 13 及以上 |
 
 - 取数走 ChatGPT.app 内置的 `codex app-server`，调用 JSON-RPC 的 `account/read` 与 `account/rateLimits/read`。
   这两个是 Codex 的内部方法、不是稳定的公开 API：上游若改了方法名或字段，表现是取数失败（菜单里会写明原因），不会崩。
 - **不需要把 `codex` 装进 PATH**：按下面的顺序找可执行文件，任何一条命中即可。
 
-  1. `/Applications/ChatGPT.app/Contents/Resources/codex`，以及 `~/Applications/ChatGPT.app/...` 下的同一路径
+  1. ChatGPT.app 自带的 codex：先用 bundle id（`com.openai.chat`）定位 App，再依次看
+     `Contents/Resources/codex-cli/bin/codex`（0.156+ 布局）、
+     `Contents/Resources/codex-cli/CodexCLI.app/Contents/MacOS/codex`、
+     `Contents/Resources/codex`（旧布局）；`/Applications` 与 `~/Applications` 下改名或带后缀的副本也会被扫到
   2. `/opt/homebrew/bin/codex`、`/usr/local/bin/codex`
-  3. `~/.local/bin/codex`、`~/.npm-global/bin/codex`
-  4. 最后用 `zsh -lc 'command -v codex'` 在用户 PATH 里找
+  3. `~/.local/bin/codex`、`~/.npm-global/bin/codex`、`~/.nvm/versions/node/*/bin/codex`
+  4. 最后用 `zsh -lc 'command -v codex'`（失败再试 `bash -lc`）在用户 PATH 里找
 
   一条都没找到时，菜单栏图标显示警告三角，悬停提示「找不到 codex CLI」。
 
