@@ -18,8 +18,8 @@
 
 | 文件 | 说明 |
 | --- | --- |
-| `CodexUsage-0.1.1.dmg` | 打开后把 **Codex Usage** 拖进「应用程序」（推荐：要用「登录时自动启动」就必须装在 `/Applications`） |
-| `CodexUsage-0.1.1-macos.zip` | 解压得到 `Codex Usage.app`，自行拖到 `/Applications` |
+| `CodexUsage-0.1.2.dmg` | 打开后把 **Codex Usage** 拖进「应用程序」（推荐：要用「登录时自动启动」就必须装在 `/Applications`） |
+| `CodexUsage-0.1.2-macos.zip` | 解压得到 `Codex Usage.app`，自行拖到 `/Applications` |
 
 发布包是 **universal 二进制**（Apple Silicon + Intel），只做了本地 ad-hoc 签名（项目没有 Apple 开发者证书）。首次打开可能被 Gatekeeper 拦下：在「系统设置 → 隐私与安全性」里点「仍要打开」，或直接去掉隔离属性：
 

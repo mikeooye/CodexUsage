@@ -4,7 +4,7 @@ cd "${0:A:h}/.."
 
 APP=".build/Codex Usage.app"
 BIN=".build/release/CodexUsage"
-VERSION="${VERSION:-0.1.0}"
+VERSION="${VERSION:-0.1.2}"
 BUILD_NUMBER="${BUILD_NUMBER:-1}"
 
 # --install   构建后替换 /Applications 里的包（「登录时自动启动」要求 App 在启动磁盘上）
@@ -19,49 +19,26 @@ for arg in "$@"; do
   esac
 done
 
-# 首选 SwiftPM（增量构建、快）。但在受限环境里（例如被沙箱挡住写 ~/Library 与
-# 系统模块缓存）SwiftPM 的构建服务和 manifest 会失败 —— 这时退回直接调用 swiftc。
-# 两条路径产物等价，都不需要额外权限或人工批准。
+# 通过 SwiftPM 构建，确保第三方模块（例如 ConfettiSwiftUI）参与编译。
 build_with_swiftpm() {
   swift build -c release
 }
 
-# 编译单个架构的切片：$1 = 架构，$2 = 输出路径。
-compile_slice() {
-  local arch="$1" out="$2"
-  mkdir -p "${out:h}"
-  swiftc -O -parse-as-library -swift-version 5 \
-    -target "$arch-apple-macosx13.0" \
-    -sdk "$(xcrun --show-sdk-path)" \
-    -o "$out" Sources/CodexUsage/*.swift \
-    -module-cache-path "$PWD/.build/swiftc/swift-cache" \
-    -Xcc "-fmodules-cache-path=$PWD/.build/swiftc/clang-cache"
-}
-
-build_with_swiftc() {
-  echo "→ 用 swiftc 直接编译（跳过 SwiftPM）"
-  local scratch=".build/swiftc"
-  mkdir -p "$scratch" .build/release
-  # 把编译器缓存全部重定向进工作区，避免写系统目录被拒。
-  export CLANG_MODULE_CACHE_PATH="$PWD/$scratch/clang-cache"
-  if [[ "$UNIVERSAL" == "1" ]]; then
-    compile_slice arm64 "$scratch/arm64/CodexUsage"
-    compile_slice x86_64 "$scratch/x86_64/CodexUsage"
-    lipo -create -output "$BIN" "$scratch/arm64/CodexUsage" "$scratch/x86_64/CodexUsage"
-  else
-    compile_slice "$(uname -m)" "$BIN"
-  fi
-}
-
 if [[ "$UNIVERSAL" == "1" ]]; then
-  # SwiftPM 要连跑两遍且产物互相覆盖，通用二进制直接编两个切片再 lipo 更可控。
-  build_with_swiftc
+  # 不同架构分别使用独立 scratch path，避免 SwiftPM 覆盖另一架构的产物。
+  ARM64_BUILD=".build/swiftpm-arm64"
+  X86_64_BUILD=".build/swiftpm-x86_64"
+  swift build -c release --triple arm64-apple-macosx13.0 --scratch-path "$ARM64_BUILD"
+  swift build -c release --triple x86_64-apple-macosx13.0 --scratch-path "$X86_64_BUILD"
+  lipo -create -output "$BIN" \
+    "$ARM64_BUILD/out/Products/Release/CodexUsage" \
+    "$X86_64_BUILD/out/Products/Release/CodexUsage"
 elif [[ "${BUILD_WITH_SWIFTC:-0}" == "1" || ! -w "$HOME/Library/Caches" ]]; then
-  # $HOME/Library 不可写 = 大概率在受限沙箱里，直接走 swiftc，省去 SwiftPM 那几十秒的失败等待。
-  build_with_swiftc
+  # 即使系统缓存不可写也使用 SwiftPM；第三方模块无法由直接 swiftc 编译。
+  build_with_swiftpm
 elif ! build_with_swiftpm; then
-  echo "→ SwiftPM 构建失败，回退到 swiftc"
-  build_with_swiftc
+  echo "SwiftPM 构建失败；项目依赖第三方 SwiftPM 模块，不能回退到 swiftc。" >&2
+  exit 1
 fi
 
 rm -rf "$APP"

@@ -3,10 +3,10 @@ set -euo pipefail
 cd "${0:A:h}/.."
 
 # 打发布包：通用二进制 .app → dist/ 里的 .zip 与 .dmg。
-#   VERSION=0.1.1 ./scripts/package-release.sh
+#   VERSION=0.1.2 ./scripts/package-release.sh
 #   SKIP_DMG=1 ./scripts/package-release.sh    # 只出 zip
 # 版本号同时进 Info.plist 和文件名，免得两者对不上。
-VERSION="${VERSION:-0.1.0}"
+VERSION="${VERSION:-0.1.2}"
 BUILD_NUMBER="${BUILD_NUMBER:-1}"
 SKIP_DMG="${SKIP_DMG:-0}"
 DIST="dist"
