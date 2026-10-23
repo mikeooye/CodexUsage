@@ -4,12 +4,16 @@ import Combine
 @MainActor
 final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private let store = UsageStore()
+    private let celebrationOverlay = CelebrationOverlay()
+    private let resetPreferences = ResetPreferences()
     /// 菜单里那块用量信息（自定义视图，保留进度条）。
     private let usageView = UsageMenuView()
     private var statusItem: NSStatusItem!
     private var launchAtLoginItem: NSMenuItem?
     /// 「刷新」那一项 —— 标题里会带上最后更新时间。
     private var refreshItem: NSMenuItem?
+    private var resetNotificationItem: NSMenuItem?
+    private var resetCelebrationItem: NSMenuItem?
     /// 登录项状态的缓存。`SMAppService.status` 是同步 XPC：平时 2ms，但系统服务偶尔
     /// 变慢时会变成几百毫秒。它绝不能出现在菜单展开路径上，否则菜单会卡住才弹出。
     private var launchAtLoginEnabled = false
@@ -40,9 +44,16 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         // 启动时就把登录项状态读进缓存，这样第一次展开菜单也不用同步等 XPC。
         refreshLaunchAtLoginCache()
 
-        ResetNotifier.shared.prepare()
+        if resetPreferences.isNotificationEnabled {
+            ResetNotifier.shared.prepare()
+        }
         store.onReset = { windows in
-            ResetNotifier.shared.notify(windows)
+            if self.resetPreferences.isNotificationEnabled {
+                ResetNotifier.shared.notify(windows)
+            }
+            if self.resetPreferences.isCelebrationEnabled {
+                self.celebrationOverlay.show()
+            }
         }
 
         renderIcon()
@@ -65,6 +76,28 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         refreshItem.target = self
         menu.addItem(refreshItem)
         self.refreshItem = refreshItem
+
+        menu.addItem(.separator())
+
+        let resetNotificationItem = NSMenuItem(
+            title: "重置通知",
+            action: #selector(toggleResetNotification),
+            keyEquivalent: ""
+        )
+        resetNotificationItem.target = self
+        resetNotificationItem.state = resetPreferences.isNotificationEnabled ? .on : .off
+        menu.addItem(resetNotificationItem)
+        self.resetNotificationItem = resetNotificationItem
+
+        let resetCelebrationItem = NSMenuItem(
+            title: "重置庆祝动画",
+            action: #selector(toggleResetCelebration),
+            keyEquivalent: ""
+        )
+        resetCelebrationItem.target = self
+        resetCelebrationItem.state = resetPreferences.isCelebrationEnabled ? .on : .off
+        menu.addItem(resetCelebrationItem)
+        self.resetCelebrationItem = resetCelebrationItem
 
         let loginItem = NSMenuItem(title: "登录时自动启动",
                                    action: #selector(toggleLaunchAtLogin),
@@ -113,6 +146,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
 
     @objc private func refreshNow() {
         Task { await store.refresh() }
+    }
+
+    @objc private func toggleResetNotification() {
+        let enabled = !resetPreferences.isNotificationEnabled
+        resetPreferences.isNotificationEnabled = enabled
+        resetNotificationItem?.state = enabled ? .on : .off
+        if enabled {
+            ResetNotifier.shared.prepare()
+        }
+    }
+
+    @objc private func toggleResetCelebration() {
+        let enabled = !resetPreferences.isCelebrationEnabled
+        resetPreferences.isCelebrationEnabled = enabled
+        resetCelebrationItem?.state = enabled ? .on : .off
     }
 
     @objc private func toggleLaunchAtLogin() {
